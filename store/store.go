@@ -1,19 +1,17 @@
 package store
 
-func SaveText(req string) bool {
-	// code
+import "fmt"
 
-	return true
+var storage []string
+
+func AddProduct(product string) {
+	storage = append(storage, product)
+	fmt.Printf("Продукт %s был успешно добавлен в корзину \n", product)
 }
 
-func SaveInt(req string) bool {
-	// code
-
-	return true
-}
-
-func daveText(req string) bool {
-	// code
-
-	return true
+func Order() []string {
+	result := storage
+	storage = []string{}
+	fmt.Println("Товары успешно куплены: ")
+	return result
 }
