@@ -1,26 +1,10 @@
 package main
 
-import (
-	"fmt"
-)
+import "github.com/Shemistan/Lesson_3/shop"
 
 func main() {
-	//var a map[int]int
-	//
-	//a[1] = 1
-	increment()
+	var shop shop.Shop
+	shop.Init()
 
-}
-
-func increment() {
-	defer fmt.Println("вызвался defer 1")
-	defer fmt.Println("вызвался defer 2")
-	defer fmt.Println("вызвался defer 3")
-	fmt.Println("1")
-	fmt.Println("2")
-	var a map[int]int
-
-	a[1] = 1
-
-	fmt.Println("3")
+	shop.Run()
 }
