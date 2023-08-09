@@ -15,14 +15,14 @@ const (
 )
 
 func main() {
-	fmt.Println(
-		"Доступные комманды: \n",
-		"reg         зарегестрироваться в приложении\n",
-		"login       войти в аккаунт\n",
-		"exit        выйти из приложения\n",
-		"add_product добавить продукт в корзину\n",
-		"order       совершить покупку вывести на консоль все купленные продукты",
-	)
+	fmt.Println("Доступные комманды: ")
+
+	showCommandHint(reg, "зарегестрироваться в приложении")
+	showCommandHint(login, "войти в аккаунт")
+	showCommandHint(exit, "выйти из приложения")
+	showCommandHint(addProduct, "добавить продукт в корзину")
+	showCommandHint(order, "совершить покупку вывести на консоль все купленные продукты")
+
 loop:
 	for {
 		var command string
@@ -48,6 +48,10 @@ loop:
 			fmt.Println(store.Order())
 		}
 	}
+}
+
+func showCommandHint(command string, hint string) {
+	fmt.Printf("%s - %s\n", command, hint)
 }
 
 func increment() {
