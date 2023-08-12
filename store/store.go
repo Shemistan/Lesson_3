@@ -3,7 +3,6 @@ package store
 import "fmt"
 
 func StartPrint() {
-	fmt.Println("Введите команду, одну из exit/auth/reg/add_product/order")
 	fmt.Println("Список команд:")
 	fmt.Printf("Команда %s - выход из приложения\n", "exit")
 	fmt.Printf("Команда %s - авторизацияя\n", "auth")
