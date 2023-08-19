@@ -2,6 +2,7 @@ package auth
 
 import (
 	"fmt"
+	"github.com/Shemistan/Lesson_3/constants"
 	"github.com/Shemistan/Lesson_3/utils"
 	"os"
 )
@@ -12,11 +13,11 @@ var CurrentUser = ""
 func Register(user string) string {
 	CurrentUser = ""
 	if utils.UserExists(users, user) {
-		return "Этот пользователь уже существует"
+		return constants.USER_ALREADY_EXISTS
 	}
 	users = append(users, user)
 
-	message := fmt.Sprintf("Пользователь %s успешно добавлен", user)
+	message := fmt.Sprintf(constants.USER_ADDED, user)
 	return message
 }
 
@@ -24,9 +25,9 @@ func Auth(user string) string {
 	CurrentUser = ""
 	if utils.UserExists(users, user) {
 		CurrentUser = user
-		return "Добро пожаловать в магазин"
+		return constants.WELCOME
 	} else {
-		return "Вы не зарегистрированы"
+		return constants.NOT_AUTHORIZED
 	}
 }
 

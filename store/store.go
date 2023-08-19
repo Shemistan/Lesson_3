@@ -3,35 +3,36 @@ package store
 import (
 	"errors"
 	"fmt"
+	"github.com/Shemistan/Lesson_3/constants"
 )
 
 var Products = make(map[string][]string)
 
 func AddProduct(user, product string) string {
 	Products[user] = append(Products[user], product)
-	return fmt.Sprintf("%s добавлен в корзину", product)
+	return fmt.Sprintf(constants.PRODUCT_ADDED, product)
 }
 
 func Order(user string) (string, error) {
 	usersProducts := Products[user]
 	if usersProducts == nil || len(usersProducts) == 0 {
-		return "Корзина пуста", errors.New("cart is empty")
+		return constants.CART_IS_EMPTY, errors.New("cart is empty")
 	} else {
-		message := fmt.Sprintf("Чек (%s):\n", user)
+		message := fmt.Sprintf(constants.CART_TITLE, user)
 		for i := range usersProducts {
-			message += fmt.Sprint(i+1, " ", usersProducts[i], "\n")
+			message += fmt.Sprintf(constants.CART_ROW, i+1, usersProducts[i])
 		}
 		Products[user] = []string{}
 		return message, nil
 	}
 }
 
-func Cancel(user string) (string, error) {
+func Cancel(user string) string {
 	usersProducts := Products[user]
 	if usersProducts == nil || len(usersProducts) == 0 {
-		return "Корзина пуста", errors.New("cart is empty")
+		return constants.CART_IS_EMPTY
 	} else {
 		Products[user] = []string{}
-		return "Корзина очищена", nil
+		return constants.CART_EMPTIED
 	}
 }

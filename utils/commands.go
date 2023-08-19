@@ -1,6 +1,9 @@
 package utils
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/Shemistan/Lesson_3/constants"
+)
 
 const (
 	Reg        = "reg"
@@ -21,7 +24,7 @@ const (
 )
 
 func ShowCommands(user string) {
-	fmt.Println("Введите команду")
+	fmt.Println(constants.ENTER_COMMAND)
 	if user == "" {
 		fmt.Println(regDescription)
 		fmt.Println(authDescription)

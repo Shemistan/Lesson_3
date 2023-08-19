@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/Shemistan/Lesson_3/auth"
+	"github.com/Shemistan/Lesson_3/constants"
 	"github.com/Shemistan/Lesson_3/store"
 	"github.com/Shemistan/Lesson_3/utils"
 )
@@ -40,7 +41,7 @@ func handleCommand(command string) {
 }
 
 func handleReg() {
-	fmt.Println("Введите логин и пароль в таком виде login_password")
+	fmt.Println(constants.ENTER_LOGIN_AND_PASSWORD)
 	var user string
 	utils.Read(&user)
 
@@ -50,7 +51,7 @@ func handleReg() {
 }
 
 func handAuth() {
-	fmt.Println("Введите логин и пароль в таком виде login_password")
+	fmt.Println(constants.ENTER_LOGIN_AND_PASSWORD)
 	var user string
 	utils.Read(&user)
 
@@ -61,7 +62,7 @@ func handAuth() {
 
 func handleAddProduct() {
 	if auth.IsAuthorized() {
-		fmt.Println("Введите продукт")
+		fmt.Println(constants.ENTER_PRODUCT)
 		var product string
 		utils.Read(&product)
 
@@ -69,7 +70,7 @@ func handleAddProduct() {
 		fmt.Println(message)
 		command = ""
 	} else {
-		fmt.Println("Вы не зарегистрированны")
+		fmt.Println(constants.NOT_AUTHORIZED)
 		command = utils.Auth
 	}
 }
@@ -84,23 +85,19 @@ func handleOrder() {
 			command = ""
 		}
 	} else {
-		fmt.Println("Вы не зарегистрированны")
+		fmt.Println(constants.NOT_AUTHORIZED)
 		command = utils.Auth
 	}
 }
 
 func handleCancel() {
 	if auth.IsAuthorized() {
-		message, err := store.Cancel(auth.CurrentUser)
+		message := store.Cancel(auth.CurrentUser)
 		fmt.Println(message)
-		if err != nil {
-			command = utils.AddProduct
-		} else {
-			auth.LogOut()
-			command = ""
-		}
+		auth.LogOut()
+		command = ""
 	} else {
-		fmt.Println("Вы не зарегистрированны")
+		fmt.Println(constants.NOT_AUTHORIZED)
 		command = utils.Auth
 	}
 }
