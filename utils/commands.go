@@ -20,12 +20,15 @@ const (
 	exitDescription       = Exit + " - выход из приложения"
 )
 
-func showCommands() {
-	fmt.Println("Введите команду") // Сделать красивый вывод, вывести список команд на этом шаге
-	fmt.Println(regDescription)
-	fmt.Println(authDescription)
-	fmt.Println(addProductDescription)
-	fmt.Println(orderDescription)
-	fmt.Println(cancelDescription)
-	fmt.Println(exitDescription)
+func ShowCommands(user string) {
+	fmt.Println("Введите команду")
+	if user == "" {
+		fmt.Println(regDescription)
+		fmt.Println(authDescription)
+		fmt.Println(exitDescription)
+	} else {
+		fmt.Println(addProductDescription)
+		fmt.Println(orderDescription)
+		fmt.Println(cancelDescription)
+	}
 }

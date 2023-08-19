@@ -1,7 +1,6 @@
 package auth
 
 import (
-	"errors"
 	"fmt"
 	"github.com/Shemistan/Lesson_3/utils"
 	"os"
@@ -10,27 +9,35 @@ import (
 var users = make([]string, 0, 10)
 var CurrentUser = ""
 
-func Register(user string) (string, error) {
+func Register(user string) string {
 	CurrentUser = ""
 	if utils.UserExists(users, user) {
-		return "Этот пользователь уже существует", errors.New("user already exists")
+		return "Этот пользователь уже существует"
 	}
 	users = append(users, user)
 
 	message := fmt.Sprintf("Пользователь %s успешно добавлен", user)
-	return message, nil
+	return message
 }
 
-func Auth(user string) (string, error) {
+func Auth(user string) string {
 	CurrentUser = ""
 	if utils.UserExists(users, user) {
 		CurrentUser = user
-		return "Добро пожаловать в магазин", nil
+		return "Добро пожаловать в магазин"
 	} else {
-		return "Вы не зарегистрированы", errors.New("user not found")
+		return "Вы не зарегистрированы"
 	}
 }
 
 func Exit() {
 	os.Exit(0)
+}
+
+func LogOut() {
+	CurrentUser = ""
+}
+
+func IsAuthorized() bool {
+	return CurrentUser != ""
 }

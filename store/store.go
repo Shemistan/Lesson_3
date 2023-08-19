@@ -17,9 +17,9 @@ func Order(user string) (string, error) {
 	if usersProducts == nil || len(usersProducts) == 0 {
 		return "Корзина пуста", errors.New("cart is empty")
 	} else {
-		message := fmt.Sprintf("Чек (%s):", user)
+		message := fmt.Sprintf("Чек (%s):\n", user)
 		for i := range usersProducts {
-			message += fmt.Sprint(i+1, usersProducts[i])
+			message += fmt.Sprint(i+1, " ", usersProducts[i], "\n")
 		}
 		Products[user] = []string{}
 		return message, nil
