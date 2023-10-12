@@ -1,19 +1,15 @@
 package store
 
-func SaveText(req string) bool {
-	// code
+import "fmt"
 
-	return true
+func AddProduct(productList []string, product string) []string {
+	productList = append(productList, product)
+	fmt.Printf("Продукт %s успешно добавлен \n", product)
+	return productList
 }
 
-func SaveInt(req string) bool {
-	// code
-
-	return true
-}
-
-func daveText(req string) bool {
-	// code
-
-	return true
+func Order(productList []string) []string {
+	fmt.Println("Вы купили", productList)
+	productList = make([]string, 0, 10)
+	return productList
 }
